@@ -1,3 +1,5 @@
+![example](https://github.com/gocanto/google-autocomplete/blob/master/example.gif)
+
 I am sharing this component because I was overwhelmed off complicated examples to achieve this simple duty. So, I will try to be as easy as the example during my explanation.
 
 ---
