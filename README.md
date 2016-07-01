@@ -1,6 +1,13 @@
-![example](https://github.com/gocanto/google-autocomplete/blob/master/example.gif)
+# Google Autocomplete
 
 I am sharing this component because I was overwhelmed off complicated examples to achieve this simple duty. So, I will try to be as easy as the example during my explanation.
+
+# Example
+
+![example](https://github.com/gocanto/google-autocomplete/blob/master/example.gif)
+
+
+# Guide
 
 ---
 * First of all, you have to create ```googleAutocomplete.js``` into your assets folder, in order for it to be used as external module, as it is shown above.
