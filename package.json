@@ -1,0 +1,27 @@
+{
+  "name": "google-places-complete",
+  "version": "1.0.0",
+  "description": "Google autocomplete vuejs componet",
+  "main": "src/js/index.js",
+  "scripts": {
+
+  },
+  "keywords": [
+    "google",
+    "autocomplete",
+    "vue",
+    "componet"
+  ],
+  "author": "Gustavo Ocanto",
+  "license": "MIT",
+  "devDependencies": {
+    "vue": "^1.0.26",
+    "laravel-elixir": "^5.*",
+    "gulp": "^3.*",
+    "gulp-notify": "^2.*",
+    "laravel-elixir-vueify": "^1.*"
+  },
+  "dependencies": {
+
+  }
+}

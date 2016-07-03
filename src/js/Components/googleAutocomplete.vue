@@ -20,21 +20,29 @@
 				},
 				api: {
 					domain: 'https://maps.googleapis.com/maps/api/js',
-					key: gpon.google.map_key,
+					key: 'AIzaSyBDBrWOEiYNTbOp05CoWBGuq4hIwAA6yEs',
 					libraries: 'places'
 				}
 			};
 		},
 
+		/**
+		 * Attach the google object to window one.
+		 * @return void
+		 */
 		ready: function ()
 		{
-			console.log('key', this.api.key);
 			window.onload = this.loadScript(
 				this.api.domain + '?key=' + this.api.key + '&libraries=' + this.api.libraries,
 				this.bindAutocomplete
 			);
 		},
 
+		/**
+		 * Controls the address changes to send them to
+		 * the listeners.
+		 * @return void
+		 */
 		watch: {
 			address: function ()
 			{
@@ -44,13 +52,27 @@
 
 		methods:
 		{
+			/**
+			 * Load google class for a given library.
+			 * @param  src
+			 * @param  callback
+			 * @return void
+			 */
 			loadScript: function(src, callback)
 			{
 				var script = document.createElement("script");
 				document.body.appendChild(script);
-				if (callback) script.onload = callback;
+
+				if (callback)
+					script.onload = callback;
+
 				script.src = src;
 			},
+
+			/**
+			 * Bind autocomplete to its property.
+			 * @return void
+			 */
 			bindAutocomplete: function ()
 			{
 				this.autocomplete = new google.maps.places.Autocomplete(
@@ -62,9 +84,13 @@
 
 			    this.autocomplete.addListener('place_changed', this.pipeAddress);
 			},
+
+			/**
+			 * Look up places and dispatch an event.
+			 * @return void
+			 */
 			pipeAddress: function ()
 			{
-				console.log('pipe');
 				var data  = {};
 				var place = this.autocomplete.getPlace();
 
@@ -83,6 +109,11 @@
 					this.$dispatch('setAddress', JSON.parse(data));
 				}
 			},
+
+			/**
+			 * Get the user location.
+			 * @return void
+			 */
 			geolocate: function()
 			{
 				if (navigator.geolocation) {

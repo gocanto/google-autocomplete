@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>google-places-complete - demo</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Google autocomplete vuejs componet.">
+	<meta name="author" content="Gustavo Ocanto - gustavoocanto@gmail.com">
+	<meta http-equiv="Content-Language" content="en" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://use.fontawesome.com/6925802621.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+      <div class="page-header">
+        <h1>Google Autocomplete Componet</h1>
+      </div>
+
+      <div class="col-md-6">
+
+      	<form class="form-horizontal" role="form" @submit.prevent="submit">
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Address</label>
+                    <div class="col-sm-9">
+                        <google-autocomplete
+                            class = "form-control"
+                            placeholder = "type your address"
+                        >
+                        </google-autocomplete>
+                    </div>
+                </div>
+
+                <pre v-if="isValid()">
+                    {{ output | json }}
+                </pre>
+
+                <div class="alert alert-danger" role="alert" v-if="sent && isNotValid()">Select a valid address!</div>
+
+                <hr>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+      </div>
+</div>
+
+<script src="dist/google-places-complete.js"></script>
+
+</body>
+</html>
