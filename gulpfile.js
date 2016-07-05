@@ -6,5 +6,5 @@ elixir.config.assetsPath = 'src';
 
 elixir(function(mix)
 {
-	mix.browserify('demo.js', 'dist/google-places-complete.js');
+	mix.browserify('demo.js', 'dist/demo.js');
 });
