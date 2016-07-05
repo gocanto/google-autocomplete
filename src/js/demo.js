@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Components from './components/index';
+import Components from './Components/index.js';
 
 window.Vue = Vue;
 
