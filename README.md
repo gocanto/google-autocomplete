@@ -27,6 +27,13 @@ Vue.component('google-autocomplete', GoogleAutocomplete);
 Take a look at the <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/Components/index.js" target="_blank">example</a> published.
 
 
+# Validation on server side
+
+Places validation is a laravel library that will help you out to handle your user addresses. Its aim is making sure the addresses submitted by users are valid through 3rd party services, as google.
+
+Take a look at its repository on <a href="https://github.com/gocanto/places-validation"> Places Validation </a> 
+
+
 # Illustration
 
 ![example](https://github.com/gocanto/google-autocomplete/blob/master/src/images/example.gif)
