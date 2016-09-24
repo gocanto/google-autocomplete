@@ -1,6 +1,6 @@
 {
   "name": "google-autocomplete-vue",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Google autocomplete vuejs componet",
   "main": "dist/google-autocomplete-vue.js",
   "keywords": [
