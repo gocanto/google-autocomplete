@@ -1,6 +1,8 @@
 # Google Autocomplete
 
 <a href="https://gocanto.github.io/google-autocomplete/"><img src="https://img.shields.io/badge/online-demo-green.svg" alt="Demo"></a>
+<a href="https://www.npmjs.com/package/google-autocomplete-vue"><img src="https://img.shields.io/npm/v/google-autocomplete-vue.svg" alt="Version"></a>
+<a href="https://www.npmjs.com/package/google-autocomplete-vue"><img src="https://img.shields.io/npm/dt/google-autocomplete-vue.svg" alt="Downloads"></a>
 <a href="https://github.com/gocanto/google-autocomplete/blob/master/LICENSE.md"><img src="https://img.shields.io/npm/l/easiest-js-validator.svg" alt="License"></a>
 
 
@@ -8,8 +10,7 @@ I am sharing this component because I was overwhelmed of complicated examples to
 
 
 # Installation
-
-To install this component you just need to clone this repo and run it locally.
+To install this package you just need to open your console line and type ```npm i google-autocomplete-vue```. If there is a problem during the installation, you can try again using the ```force param``` as so ```npm i -f google-autocomplete-vue```
 
 # Gettings started
 First of all, you will have to import the library into the file where you are operating. As so,
