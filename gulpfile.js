@@ -1,4 +1,4 @@
-require('laravel-elixir-vueify');
+require('laravel-elixir-vue');
 var elixir = require('laravel-elixir');
 
 elixir.config.sourcemaps = false;
@@ -6,5 +6,5 @@ elixir.config.assetsPath = 'src';
 
 elixir(function(mix)
 {
-	mix.browserify('demo.js', 'dist/demo.js');
+	mix.webpack('index.js', 'dist/google-autocomplete-vue.js');
 });
