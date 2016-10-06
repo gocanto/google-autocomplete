@@ -9,56 +9,76 @@
 	<meta name="description" content="Google autocomplete vuejs componet.">
 	<meta name="author" content="Gustavo Ocanto - gustavoocanto@gmail.com">
 	<meta http-equiv="Content-Language" content="en" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script src="https://use.fontawesome.com/6925802621.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 
 <body>
 
-<div class="container">
-      <div class="page-header">
-        <h1>Google Autocomplete Componet</h1>
-      </div>
+<div id="demo" class="container">
 
-      <div class="col-md-6">
-
-      	<form class="form-horizontal" role="form" @submit.prevent="submit">
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Address</label>
-                    <div class="col-sm-9">
-                        <google-autocomplete
-                            class = "form-control"
-                            placeholder = "type your address"
-                        >
-                        </google-autocomplete>
-                    </div>
+    <section class="hero is-light">
+        <div class="hero-head">
+            <nav class="nav">
+                <div class="nav-left">
+                    <a href="#" class="nav-item is-brand">
+                        <h1 class="title">Google Autocomplete Componet</h1>
+                    </a>
                 </div>
-
-                <pre v-if="isValid()">
-                    {{ output | json }}
-                </pre>
-
-                <div class="alert alert-danger" role="alert" v-if="sent && isNotValid()">Select a valid address!</div>
-
-                <hr>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;
-                            Submit
-                        </button>
-                    </div>
+                <div id="nav-menu" class="nav-right nav-menu">
+                    <div class="nav-item"><a href="https://github.com/gocanto/google-autocomplete" target="_blank" class="nav-item"><i class="fa fa-github" aria-hidden="true"></i>&nbsp;DOCUMENTATION</a></div>
+                    <div class="nav-item"><a href="http://g-ocanto.com/" target="_blank" class="nav-item"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;AUTHOR</a></div>
                 </div>
-            </form>
+            </nav>
+        </div>
 
-      </div>
+        <div class="hero-body">
+            <div class="container">
+                <h2 class="subtitle">
+                    A small <strong>vue</strong> plugin to pull in the google places autocomplete in your projects.
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <div class="box">
+        <form class="form-horizontal" role="form" @submit.prevent="submit">
+
+            <div>
+                <label class="label">Address:</label>
+                <p class="control">
+                    <google-autocomplete
+                        class = "input"
+                        placeholder = "type your address"
+                    >
+                    </google-autocomplete>
+                    <span class="help is-danger" v-if="sent && isNotValid()">Select a valid address!</span>
+                </p>
+            </div>
+
+            <p class="control">&nbsp;</p>
+
+            <p class="control">
+                <button type="submit" class="button is-primary is-outlined">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save Address
+                </button>
+            </p>
+
+        </form>
+    </div>
+
+    <article class="message is-success" v-if="isValid()">
+        <div class="message-header">
+            Address retrieved from google places
+        </div>
+        <div class="message-body">
+            <pre>{{ output }}</pre>
+        </div>
+    </article>
+
 </div>
 
-<script src="demo.js"></script>
+<script src="../dist/google-autocomplete-vue.js"></script>
 
 </body>
 </html>
