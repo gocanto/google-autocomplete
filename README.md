@@ -6,26 +6,40 @@
 <a href="https://github.com/gocanto/google-autocomplete/blob/master/LICENSE.md"><img src="https://img.shields.io/npm/l/easiest-js-validator.svg" alt="License"></a>
 
 
-I am sharing this component because I was overwhelmed of complicated examples to achieve this simple duty. So, I will try to be as easy as I can during my explanation.
+I am sharing this component because I was overwhelmed of complicated examples to achieve this simple duty. So, I will try to be as easier as I can during my explanation.
+
+# Requirements
+You will have to install vue & vuex
+
+```js
+npm install vue
+```
+
+```js
+npm install vuex
+```
+
+The <a href="http://vuex.vuejs.org/en/intro.html" target="_blank">vuex library</a> is used to manage the event between the component and the current vue instance.
 
 
 # Installation
-To install this package you just need to open your console line and type ```npm i google-autocomplete-vue```. If there is a problem during the installation, you can try again using the ```force param``` as so ```npm i -f google-autocomplete-vue```
+To install this package you just need to open your console line and type ```npm i google-autocomplete-vue```. If there is a problem during the installation, you can try again using the ```force param```, as so ```npm i -f google-autocomplete-vue```
+
 
 # Gettings started
-First of all, you will have to import the library into the file where you are operating. As so,
+First of all, you will have to import the component in your application entry point, so you will be able to call it as global as need it. Example:
 
 ```js
-import GoogleAutocomplete from './googleAutocomplete.vue';
+import GoogleAutocomplete from 'google-autocomplete-vue';
 ```
 
-Then, you have to register the component in order for you to use it within your code. As so, 
+Second of all, you will have to import the store file shipped with the component, in order for it to exposes its event out of it. Example
 
 ```js
-Vue.component('google-autocomplete', GoogleAutocomplete);
+import Store from 'google-autocomplete-vue/dist/Store';
 ```
 
-Take a look at the <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/Components/index.js" target="_blank">example</a> published.
+Take a look at the <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/index.js#L8-L9" target="_blank">example</a> published.
 
 
 # Validation on server side
@@ -52,53 +66,90 @@ Also, you will be able to see the online <a href="https://gocanto.github.io/goog
 
 ```javascript
 
-    new Vue({
-        el: '#myelement',
+import Vue from 'vue';
+import Store from 'google-autocomplete-vue/dist/Store';
+import Components from 'google-autocomplete-vue';
 
-        data:
-        {
-            address: {}
-        },
+new Vue({
 
-        events: {
-            setAddress: function (data)
-            {
-                this.address = data;
-            }
-        },
+	el: '#demo',
 
-        components: {
-            Components
-        }
+	data:
+	{
+		output: {}, address: {}, sent: false
+	},
 
-    });
+	computed:
+	{
+		sharedAddress: function()
+		{
+			return Store.state.sharedAddress;
+		}
+	},
+
+	watch: {
+		sharedAddress: function ()
+		{
+			this.address = this.sharedAddress;
+		}
+	},
+
+	methods:
+	{
+		submit: function ()
+		{
+			this.sent = true;
+			this.output = this.address;
+			this.address = {};
+		},
+
+		isValid: function ()
+		{
+			return Object.keys(this.output).length > 0;
+		},
+
+		isNotValid: function ()
+		{
+			return ! this.isValid();
+		}
+	}
+
+});
 
 ```
 
-See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/demo.js#L47" target="_blank">here</a>
+See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/demo.js" target="_blank">here</a>
 
 
-* Third of off, you need to create your application entry file, as so:
-
-* Fourth of all, you have to compile these two files with **browserify** and **laravel-elixir-vueify** to make them readable for every browser. To achieve this task, I used laravel elixir. As so
+* Third of all, you have to compile these two files with **browserify or webpack** and **laravel-elixir-vue-2** to make them readable for every browser. Example:
 
 ```javascript
+require('laravel-elixir-vue-2');
+var elixir = require('laravel-elixir');
+
+elixir.config.sourcemaps = false;
+elixir.config.assetsPath = 'src';
+
 elixir(function(mix)
 {
-    mix.browserify('vue/entry.js');
+	mix.webpack('index.js', 'dist/demo.js');
 });
 ```
 
-See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/gulpfile.js" target="_blank">here</a>
+See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/gulpfile.js#L10" target="_blank">here</a>
 
 
 * Finally, you can use the component in your **HTML** file using this syntax:
 
 ```HTML
-<google-autocomplete class="form-control input-lg"></google-autocomplete>
+<google-autocomplete
+    class = "input"
+    placeholder = "type your address"
+>
+</google-autocomplete>
 ```
 
-See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/demo/index.html#L32" target="_blank">here</a>
+See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/demo/index.html#L50-L54" target="_blank">here</a>
 
 
 Also, You can pass any ```css class``` through "class" prop.
