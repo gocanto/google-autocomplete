@@ -1,4 +1,11 @@
 <script>
+
+	/**
+	 * The component core.
+	 * @author Gustavo Ocanto <gustavoocanto@gmail.com>
+	 * @license https://github.com/gocanto/google-autocomplete/blob/master/LICENSE.md
+	 */
+
 	import Store from './../Store'
 
 	export default {
