@@ -1,10 +1,20 @@
 {
     "license": "MIT",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "author": "Gustavo Ocanto",
     "name": "google-autocomplete-vue",
     "main": "dist/google-autocomplete-vue.js",
     "description": "Google autocomplete vuejs componet",
+    "homepage": "https://github.com/gocanto/google-autocomplete",
+
+    "scripts": {
+        "prepublish": "gulp"
+    },
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gocanto/google-autocomplete.git"
+    },
 
     "keywords": [
         "vue",
