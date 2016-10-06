@@ -1,3 +1,9 @@
+/**
+ * The demo instance.
+ * @author Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @license https://github.com/gocanto/google-autocomplete/blob/master/LICENSE.md
+ */
+
 import Vue from 'vue';
 import Store from './Store';
 import Components from './Components/index';

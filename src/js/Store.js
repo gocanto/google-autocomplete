@@ -1,3 +1,10 @@
+
+/**
+ * File on charge of tracking the component events.
+ * @author Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @license https://github.com/gocanto/google-autocomplete/blob/master/LICENSE.md
+ */
+
 import Vue from 'vue';
 import Vuex from 'vuex';
 
