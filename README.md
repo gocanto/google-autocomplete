@@ -47,7 +47,7 @@ Take a look at the <a href="https://github.com/gocanto/google-autocomplete/blob/
 
 Places validation is a laravel library that will help you out to handle your user addresses. Its aim is making sure the addresses submitted by users are valid through 3rd party services, as google.
 
-Take a look at its repository on <a href="https://github.com/gocanto/places-validation"> Places Validation </a> 
+Take a look at its repository on <a href="https://github.com/gocanto/places-validation"> Places Validation </a>
 
 
 # Illustration
@@ -73,47 +73,47 @@ import Components from 'google-autocomplete-vue';
 
 new Vue({
 
-	el: '#demo',
+    el: '#demo',
 
-	data:
-	{
-		output: {}, address: {}, sent: false
-	},
+    data:
+    {
+        output: {}, address: {}, sent: false
+    },
 
-	computed:
-	{
-		sharedAddress: function()
-		{
-			return Store.state.sharedAddress;
-		}
-	},
+    computed:
+    {
+        sharedAddress: function()
+        {
+            return Store.state.sharedAddress;
+        }
+    },
 
-	watch: {
-		sharedAddress: function ()
-		{
-			this.address = this.sharedAddress;
-		}
-	},
+    watch: {
+        sharedAddress: function ()
+        {
+            this.address = this.sharedAddress;
+        }
+    },
 
-	methods:
-	{
-		submit: function ()
-		{
-			this.sent = true;
-			this.output = this.address;
-			this.address = {};
-		},
+    methods:
+    {
+        submit: function ()
+        {
+            this.sent = true;
+            this.output = this.address;
+            this.address = {};
+        },
 
-		isValid: function ()
-		{
-			return Object.keys(this.output).length > 0;
-		},
+        isValid: function ()
+        {
+            return Object.keys(this.output).length > 0;
+        },
 
-		isNotValid: function ()
-		{
-			return ! this.isValid();
-		}
-	}
+        isNotValid: function ()
+        {
+            return ! this.isValid();
+        }
+    }
 
 });
 
@@ -133,7 +133,7 @@ elixir.config.assetsPath = 'src';
 
 elixir(function(mix)
 {
-	mix.webpack('index.js', 'dist/demo.js');
+    mix.webpack('index.js', 'dist/demo.js');
 });
 ```
 
