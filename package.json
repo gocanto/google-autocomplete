@@ -1,23 +1,24 @@
 {
-  "name": "google-autocomplete-vue",
-  "version": "1.0.9",
-  "description": "Google autocomplete vuejs componet",
-  "main": "dist/google-autocomplete-vue.js",
-  "keywords": [
-    "google",
-    "autocomplete",
-    "vue",
-    "componet"
-  ],
-  "author": "Gustavo Ocanto",
-  "license": "MIT",
-  "devDependencies": {
-    "gulp": "^3.*",
-    "gulp-notify": "^2.*",
-    "laravel-elixir": "6.0.0-11",
-    "laravel-elixir-vue": "^0.1.4",
-    "laravel-elixir-webpack-official": "^1.0.2",
-    "vue": "^1.0.26"
-  },
-  "dependencies": {}
+    "license": "MIT",
+    "version": "1.0.9",
+    "author": "Gustavo Ocanto",
+    "name": "google-autocomplete-vue",
+    "main": "dist/google-autocomplete-vue.js",
+    "description": "Google autocomplete vuejs componet",
+
+    "keywords": [
+        "vue",
+        "google",
+        "componet",
+        "autocomplete"
+    ],
+
+    "devDependencies": {
+        "vue": "^2.*",
+        "gulp": "^3.*",
+        "gulp-notify": "^2.*",
+        "laravel-elixir": "6.0.0-11",
+        "laravel-elixir-vue-2": "^0.2.0",
+        "laravel-elixir-webpack-official": "^1.0.6"
+    }
 }

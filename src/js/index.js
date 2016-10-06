@@ -1,25 +1,30 @@
 import Vue from 'vue';
-import Components from './Components/index.js';
-
-window.Vue = Vue;
+import Store from './Store';
+import Components from './Components/index';
 
 new Vue({
 
-	el: 'body',
+	el: '#demo',
 
 	data:
 	{
-		address: {},
-		output: {},
-		sent: false
+		output: {}, address: {}, sent: false
 	},
 
-	events: {
-        setAddress: function (data)
-        {
-            this.address = data;
-        }
-    },
+	computed:
+	{
+		sharedAddress: function()
+		{
+			return Store.state.sharedAddress;
+		}
+	},
+
+	watch: {
+		sharedAddress: function ()
+		{
+			this.address = this.sharedAddress;
+		}
+	},
 
 	methods:
 	{
@@ -32,18 +37,13 @@ new Vue({
 
 		isValid: function ()
 		{
-			return Object.keys(this.output).length > 0
+			return Object.keys(this.output).length > 0;
 		},
 
 		isNotValid: function ()
 		{
 			return ! this.isValid();
 		}
-	},
-
-	components:
-	{
-		Components
 	}
 
 });
