@@ -1,4 +1,6 @@
 <script>
+	import Store from './../Store'
+
 	export default {
 
 		props: ['class', 'placeholder'],
@@ -6,11 +8,14 @@
 		data: function ()
 		{
 			return {
-				//input bound to autocomplete
+
+				//input bound to autocomplete.
 				'address': '',
-				//google autocomplete object
+
+				//google autocomplete object.
 				'autocomplete': '',
-				//google inputs retrieved
+
+				//google inputs retrieved.
 				'inputs': {
 					route: 'long_name',
 					country: 'long_name',
@@ -18,19 +23,17 @@
 					locality: 'long_name',
 					postal_code: 'short_name'
 				},
+
+				//API info.
 				api: {
 					domain: 'https://maps.googleapis.com/maps/api/js',
 					key: 'AIzaSyBDBrWOEiYNTbOp05CoWBGuq4hIwAA6yEs',
 					libraries: 'places'
 				}
-			};
+			}
 		},
 
-		/**
-		 * Attach the google object to window one.
-		 * @return void
-		 */
-		ready: function ()
+		mounted: function ()
 		{
 			window.onload = this.loadScript(
 				this.api.domain + '?key=' + this.api.key + '&libraries=' + this.api.libraries,
@@ -38,15 +41,15 @@
 			);
 		},
 
-		/**
-		 * Controls the address changes to send them to
-		 * the listeners.
-		 * @return void
-		 */
 		watch: {
+			/**
+			 * Store the address retrieved in the vuex store.
+			 *
+			 * @return {Void}
+			 */
 			address: function ()
 			{
-				this.$dispatch('setAddress', this.address);
+				Store.commit('setAddress', this.address);
 			}
 		},
 
@@ -54,9 +57,10 @@
 		{
 			/**
 			 * Load google class for a given library.
+			 *
 			 * @param  src
 			 * @param  callback
-			 * @return void
+			 * @return {Void}
 			 */
 			loadScript: function(src, callback)
 			{
@@ -71,12 +75,13 @@
 
 			/**
 			 * Bind autocomplete to its property.
-			 * @return void
+			 *
+			 * @return {Void}
 			 */
 			bindAutocomplete: function ()
 			{
 				this.autocomplete = new google.maps.places.Autocomplete(
-			        this.$els.complete,
+			        this.$refs.complete,
 			        {
 			            types: ['geocode']
 			        }
@@ -86,8 +91,9 @@
 			},
 
 			/**
-			 * Look up places and dispatch an event.
-			 * @return void
+			 * Look up places and emit an event.
+			 *
+			 * @return {Void}
 			 */
 			pipeAddress: function ()
 			{
@@ -106,13 +112,14 @@
 					}
 
 					data = JSON.stringify(data);
-					this.$dispatch('setAddress', JSON.parse(data));
+					Store.commit('setAddress', JSON.parse(data));
 				}
 			},
 
 			/**
 			 * Get the user location.
-			 * @return void
+			 *
+			 * @return {Void}
 			 */
 			geolocate: function()
 			{
@@ -136,18 +143,16 @@
 				}
 			}
 		}
-	};
 
+	};
 </script>
 
 <template>
 	<input
-		type="text"
-		v-bind:class="class"
-		v-el:complete
-		v-model="address"
-		placeholder="{{ placeholder }}"
-		debounce="500"
-		@focus="geolocate()"
+		type = "text"
+		ref = "complete"
+		v-model = "address"
+		@focus = "geolocate()"
+		v-bind:placeholder = "placeholder"
 	>
 </template>
