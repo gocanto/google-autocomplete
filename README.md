@@ -28,7 +28,8 @@ To install this package you just need to open your console line and type ```npm 
 
 
 # Gettings started
-First of all, you have to sign up in ***Google API Console*** in order for you to configure your app information, as API key, app name, etc. This can be addressed on <a href="https://console.developers.google.com">https://console.developers.google.com</a>. Once this has been done, you will have to copy the ***API KEY given by google*** and paste in your JS file entry point. For example: 
+
+***First of all***, you have to sign up in ***Google API Console*** in order for you to configure your app information, as API key, app name, etc. This can be addressed on <a href="https://console.developers.google.com">https://console.developers.google.com</a>. Once this has been done, you will have to copy the ***API KEY given by google*** and paste in your JS file entry point. Example: 
 
 - Bootstrap File: <a href="https://github.com/gocanto/google-autocomplete/blob/development/src/js/bootstrap.js">https://github.com/gocanto/google-autocomplete/blob/development/src/js/bootstrap.js</a>
 
@@ -37,13 +38,13 @@ First of all, you have to sign up in ***Google API Console*** in order for you t
 > **Note:** Remind, Important keys have to be kept within an .env file, so be aware of this while pushing your code to your git control. 
 
 
-Second of all, you will have to import the component in your application entry point, so you will be able to call it as global when need it. Example:
+***Second of all***, you will have to import the component in your application entry point, so you will be able to call it as global when need it. Example:
 
 ```js
 import GoogleAutocomplete from 'google-autocomplete-vue';
 ```
 
-Third of all, you will have to import the store file shipped with the component, in order for it to exposes its event out of it. Example
+***Third of all***, you will have to import the store file shipped with the component, in order for it to exposes its event out of it. Example
 
 ```js
 import Store from 'google-autocomplete-vue/dist/Store';
