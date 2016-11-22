@@ -129,7 +129,7 @@ new Vue({
 
 ```
 
-See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/demo.js" target="_blank">here</a>
+See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/index.js" target="_blank">here</a>
 
 
 * Third of all, you have to compile these two files with **browserify or webpack** and **laravel-elixir-vue-2** to make them readable for every browser. Example:
