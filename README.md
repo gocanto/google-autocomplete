@@ -22,6 +22,8 @@ npm install vuex
 
 The <a href="http://vuex.vuejs.org/en/intro.html" target="_blank">vuex library</a> is used to manage the event between the component and the current vue instance.
 
+It is recommended to use Vue 2.x. If using 1.x use [this branch](if you are using Vue 1.*, you have to use this branch https://github.com/gocanto/google-autocomplete/tree/vue-1).
+
 
 # Installation
 To install this package you just need to open your console line and type ```npm i google-autocomplete-vue```. If there is a problem during the installation, you can try again using the ```force param```, as so ```npm i -f google-autocomplete-vue```
