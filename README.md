@@ -22,7 +22,8 @@ npm install vuex
 
 The <a href="http://vuex.vuejs.org/en/intro.html" target="_blank">vuex library</a> is used to manage the event between the component and the current vue instance.
 
-It is recommended to use Vue 2.x. If using 1.x use [this branch](if you are using Vue 1.*, you have to use this branch https://github.com/gocanto/google-autocomplete/tree/vue-1).
+
+***Note:*** If you happen to be using ```Vue 1.*```, you will want to pull from the <a href="https://github.com/gocanto/google-autocomplete/tree/vue-1" target="_blank">vue-1</a> branch.
 
 
 # Installation
