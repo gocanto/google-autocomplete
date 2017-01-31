@@ -9,36 +9,39 @@
 
 I am sharing this component because I was overwhelmed of complicated examples to achieve this simple duty. So, I will try to be as easier as I can during my explanation.
 
+Google Autocomplete component is not more than a ```Vue.js``` wrapper around the google official API. In spite of the demo was written in ```Vue.js```,  the Autocomplete object can be pulled in from any ***JS framework***.
+
+
 # Requirements
-You will have to install vue & vuex
+You will have to install Vue & Vuemit, as so: 
 
 ```js
-npm install vue
+npm install vue --save
 ```
 
 ```js
-npm install vuex
+npm install vuemit --save
 ```
 
-The <a href="http://vuex.vuejs.org/en/intro.html" target="_blank">vuex library</a> is used to manage the event between the component and the current vue instance.
+The <a href="https://github.com/gocanto/vuemit" target="_blank">Vuemit library</a> is used to manage the events between the google component its parent one.
 
 
 ***Note:*** If you happen to be using ```Vue 1.*```, you will want to pull from the <a href="https://github.com/gocanto/google-autocomplete/tree/vue-1" target="_blank">vue-1</a> branch.
 
 
 # Installation
-To install this package you just need to open your console line and type ```npm i google-autocomplete-vue```. If there is a problem during the installation, you can try again using the ```force param```, as so ```npm i -f google-autocomplete-vue```
+To install this package you just need to open your console line and type ```npm i google-autocomplete-vue --save```. If there is any problems during the installation, you can try again using the ```force param```, as so ```npm i -f google-autocomplete-vue --save```
 
 
 # Gettings started
 
 ***First of all***, you have to sign up in ***Google API Console*** in order for you to configure your app information, as API key, app name, etc. This can be addressed on <a href="https://console.developers.google.com">https://console.developers.google.com</a>. Once this has been done, you will have to copy the ***API KEY given by google*** and paste in your JS file entry point. Example: 
 
-- Bootstrap File: <a href="https://github.com/gocanto/google-autocomplete/blob/development/src/js/bootstrap.js">https://github.com/gocanto/google-autocomplete/blob/development/src/js/bootstrap.js</a>
+- Bootstrap File: <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/bootstrap.js">bootstrap.js</a>. You will have to ***require Vuemit*** in this file to have the events handler set as globaly. As so: <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/bootstrap.js#L23">Example</a>
 
-- Entry point file: <a href="https://github.com/gocanto/google-autocomplete/blob/development/src/js/index.js#L8">https://github.com/gocanto/google-autocomplete/blob/development/src/js/index.js#L8</a>
+- Entry point file: <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/demo.js">demo.js</a>
 
-> **Note:** Remind, Important keys have to be kept within an .env file, so be aware of this while pushing your code to your git control. 
+> **Note:** Important keys have to be kept within an .env file, so be aware of this while pushing your code to your git control. 
 
 
 ***Second of all***, you will have to import the component in your application entry point, so you will be able to call it as global when need it. Example:
@@ -47,18 +50,10 @@ To install this package you just need to open your console line and type ```npm 
 import GoogleAutocomplete from 'google-autocomplete-vue';
 ```
 
-***Third of all***, you will have to import the store file shipped with the component, in order for it to exposes its event out of it. Example
-
-```js
-import Store from 'google-autocomplete-vue/dist/Store';
-```
-
-Take a look at the <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/index.js#L8-L9" target="_blank">example</a> published.
-
 
 # Validation on server side
 
-Places validation is a laravel library that will help you out to handle your user addresses. Its aim is making sure the addresses submitted by users are valid through 3rd party services, as google.
+Places validation is a ***laravel library*** that will help you out to handle your user addresses. Its aim is making sure addresses submitted by users are valid through 3rd party services, as google.
 
 Take a look at its repository on <a href="https://github.com/gocanto/places-validation"> Places Validation </a>
 
@@ -80,59 +75,82 @@ Also, you will be able to see the online <a href="https://gocanto.github.io/goog
 
 ```javascript
 
-import Vue from 'vue';
-import Store from 'google-autocomplete-vue/dist/Store';
-import Components from 'google-autocomplete-vue';
+require('./bootstrap');
+
 
 new Vue({
 
-    el: '#demo',
+	el: '#demo',
+	
 
-    data:
-    {
-        output: {}, address: {}, sent: false
-    },
+	data:
+	{
+		output: {}, address: {}, sent: false
+	},
 
-    computed:
-    {
-        sharedAddress: function()
-        {
-            return Store.state.sharedAddress;
-        }
-    },
 
-    watch: {
-        sharedAddress: function ()
-        {
-            this.address = this.sharedAddress;
-        }
-    },
+	mounted()
+	{
+		//Set an event listener for 'setAddress'.
+		Vuemit.listen('setAddress', this.onAddressChanged);
+	},
 
-    methods:
-    {
-        submit: function ()
-        {
-            this.sent = true;
-            this.output = this.address;
-            this.address = {};
-        },
 
-        isValid: function ()
-        {
-            return Object.keys(this.output).length > 0;
-        },
+	methods:
+	{
+		/**
+		 * Submit the data to be evaluated.
+		 *
+		 * @return {Void}
+		 */
+		submit()
+		{
+			this.sent = true;
+			this.output = this.address;
+			this.address = {};
+		},
+		
 
-        isNotValid: function ()
-        {
-            return ! this.isValid();
-        }
-    }
+		/**
+		 * Checks whether the output data is valid.
+		 *
+		 * @return {Bool}
+		 */
+		isValid()
+		{
+			return Object.keys(this.output).length > 0;
+		},
+		
+
+		/**
+		 * Checks whether the output data is not valid.
+		 *
+		 * @return {Bool}
+		 */
+		isNotValid()
+		{
+			return ! this.isValid();
+		},
+
+
+		/**
+		 * The callback fired when the autocomplete event was fired.
+		 *
+		 * @param {Object}
+		 * @return {Void}
+		 */
+		onAddressChanged(address)
+		{
+			if (Object.keys(address).length > 0) {
+				this.address = address;
+			}
+		}
+	}
 
 });
-
 ```
 
-See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/index.js" target="_blank">here</a>
+See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/demo.js" target="_blank">here</a>
 
 
 * Third of all, you have to compile these two files with **browserify or webpack** and **laravel-elixir-vue-2** to make them readable for every browser. Example:
@@ -146,7 +164,7 @@ elixir.config.assetsPath = 'src';
 
 elixir(function(mix)
 {
-    mix.webpack('index.js', 'dist/demo.js');
+    mix.webpack('demo.js', 'dist/demo.js');
 });
 ```
 
@@ -157,8 +175,9 @@ See the example <a href="https://github.com/gocanto/google-autocomplete/blob/mas
 
 ```HTML
 <google-autocomplete
-    class = "input"
-    placeholder = "type your address"
+	class = "input"
+	input_id = "txtAutocomplete"
+	placeholder = "type your address"
 >
 </google-autocomplete>
 ```
