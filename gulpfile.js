@@ -11,6 +11,7 @@ elixir(function(mix)
 
 		//the Vuex file that handles the event between the component and the vue instance.
 		.copy('src/js/Store.js', 'dist/Store.js')
+		.copy('src/js/Libraries/\**.*', 'dist/Libraries')
 
 		//Exposing the component files to the dist folder.
 		.copy('src/js/Components/index.js', 'dist/Components/index.js') //registers the component as global.
