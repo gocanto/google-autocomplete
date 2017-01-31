@@ -1,6 +1,6 @@
 {
     "license": "MIT",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "author": "Gustavo Ocanto",
     "name": "google-autocomplete-vue",
     "main": "dist/Components/index.js",
