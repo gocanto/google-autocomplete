@@ -7,7 +7,6 @@
 	 * @license https://github.com/gocanto/google-autocomplete/blob/master/LICENSE.md
 	 */
 
-	import Store from './../Store'
 	import Autocomplete from './../Libraries/Autocomplete';
 
 	export default {
@@ -67,7 +66,8 @@
 			{
 				//fires an event to have the retrieved place within
 				//the parent component.
-				Store.commit('setAddress', this.place);
+				// Store.commit('setAddress', this.place);
+				Vuemit.fire('setAddress', this.place);
 			}
 		},
 

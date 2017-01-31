@@ -13,7 +13,28 @@ window.Vue = require('vue');
 
 /*
 |------------------------------------------------------------------------------------
-| Google Autocomplete
+| Vuemit
+|------------------------------------------------------------------------------------
+|
+| The smallest Vue.js events handler.
+| @link https://github.com/gocanto/vuemit
+*/
+
+require('vuemit');
+
+/*
+|------------------------------------------------------------------------------------
+| Global components entry point
+|------------------------------------------------------------------------------------
+|
+| We register all the global components within this file.
+*/
+
+require('./Components/index');
+
+/*
+|------------------------------------------------------------------------------------
+| Google Autocomplete Component
 |------------------------------------------------------------------------------------
 |
 | The google autocomplete is the configuration object for the component.

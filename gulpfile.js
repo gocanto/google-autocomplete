@@ -7,13 +7,11 @@ elixir.config.assetsPath = 'src';
 elixir(function(mix)
 {
 	//The demo js file.
-	mix.webpack('index.js', 'dist/demo.js')
+	mix.webpack('demo.js', 'dist/demo.js')
 
-		//the Vuex file that handles the event between the component and the vue instance.
-		.copy('src/js/Store.js', 'dist/Store.js')
-		.copy('src/js/Libraries/\**.*', 'dist/Libraries')
+	//the library files.
+	.copy('src/js/Libraries/\**.*', 'dist/Libraries')
 
-		//Exposing the component files to the dist folder.
-		.copy('src/js/Components/index.js', 'dist/Components/index.js') //registers the component as global.
-		.copy('src/js/Components/googleAutocomplete.vue', 'dist/Components/googleAutocomplete.vue'); //component core.
+	//Exposing the component files to the dist folder.
+	.copy('src/js/Components/\**.*', 'dist/Components')
 });
