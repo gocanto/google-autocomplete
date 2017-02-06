@@ -20,7 +20,7 @@ window.Vue = require('vue');
 | @link https://github.com/gocanto/vuemit
 */
 
-require('vuemit');
+window.Vuemit = require('vuemit');
 
 /*
 |------------------------------------------------------------------------------------
