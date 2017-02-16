@@ -151,4 +151,4 @@ class Autocomplete
 	}
 }
 
-module.exports = Autocomplete;
+export default Autocomplete;
