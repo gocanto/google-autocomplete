@@ -14,7 +14,7 @@ new Vue({
 
 	data:
 	{
-		output: {}, address: {}, sent: false
+		output: {}, address: {}, sent: false, response: {}, configs: {}
 	},
 
 	mounted()
@@ -63,10 +63,11 @@ new Vue({
 		 * @param {Object}
 		 * @return {Void}
 		 */
-		onAddressChanged(address)
+		onAddressChanged(payload)
 		{
-			if (Object.keys(address).length > 0) {
-				this.address = address;
+			if (Object.keys(payload.place).length > 0) {
+				this.address = payload.place;
+				this.response = payload.response;
 			}
 		}
 	}

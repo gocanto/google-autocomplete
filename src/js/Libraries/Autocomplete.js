@@ -16,7 +16,7 @@ class Autocomplete
 	 * @param {String} ref
 	 * @return {Void}
 	 */
-	constructor(ref)
+	constructor(ref, configs = {})
 	{
 		/**
 		 * The retrieved place.
@@ -24,6 +24,13 @@ class Autocomplete
 		 * @type {Object}
 		 */
 		this.place = {};
+
+    /**
+     * The retrieved response
+     *
+     * @type {{}}
+     */
+		this.response = {};
 
 		/**
 		 * The autocomplete instance.
@@ -39,6 +46,13 @@ class Autocomplete
 		 */
 		this.ref = document.getElementById(ref);
 
+    /**
+     * The autocomplete configs
+     *
+     * @type {{}}
+     */
+    this.configs = configs;
+
 		//Boots the autocomplete.
 		this.boot();
 	}
@@ -47,9 +61,9 @@ class Autocomplete
 	 * Create a new google map instance.
 	 *
 	 */
-	static make(ref)
+	static make(ref, configs = {})
 	{
-		return new Autocomplete(ref);
+		return new Autocomplete(ref, configs);
 	}
 
 	/**
@@ -69,9 +83,7 @@ class Autocomplete
 	 */
 	bind(obj)
 	{
-		obj.autocomplete = new google.maps.places.Autocomplete(obj.ref, {
-			types: ['geocode']
-		});
+		obj.autocomplete = new google.maps.places.Autocomplete(obj.ref, this.configs);
 
 	    obj.autocomplete.addListener('place_changed', () => { obj.pipe(); });
 	}
@@ -102,6 +114,8 @@ class Autocomplete
 				JSON.stringify(data)
 			);
 		}
+
+		this.response = place;
 	}
 
 	/**

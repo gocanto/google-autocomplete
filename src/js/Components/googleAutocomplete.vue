@@ -11,11 +11,19 @@
 
 	export default {
 
-		props: [
-			'placeholder', //the input placeholder
-			'input_id', // the input id
-			'class' // the input class
-		],
+		props: {
+            placeholder: String, //the input placeholder
+            input_id: String, // the input id
+            "class": String, // the input class
+            configs: {
+              type: Object,
+              "default": () => {
+                return {
+                  types: ['geocode']
+                }
+              }
+            } // the Google Autocomplete configs to pass-in
+        },
 
 		data: function ()
 		{
@@ -50,14 +58,21 @@
 				}
 
 				return {};
-			}
+			},
+            response () {
+              if (this.hasAutocompleteInstance() && this.autocomplete.getPlace() !== null) {
+                return this.autocomplete.response;
+              }
+
+              return {};
+            }
 		},
 
 		mounted()
 		{
 			//Creates a new Autocomplete object and bind it to
 			//the given key.
-			this.autocomplete = Autocomplete.make(this.input_id);
+			this.autocomplete = Autocomplete.make(this.input_id, this.configs);
 		},
 
 		watch:
@@ -67,7 +82,10 @@
 				//fires an event to have the retrieved place within
 				//the parent component.
 				// Store.commit('setAddress', this.place);
-				Vuemit.fire('setAddress', this.place);
+				Vuemit.fire('setAddress', {
+                  place: this.place,
+                  response: this.response
+                });
 			}
 		},
 
