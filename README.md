@@ -14,7 +14,7 @@ Google Autocomplete component is not more than a ```Vue.js``` wrapper around the
 
 
 # Requirements
-You will have to install Vue & Vuemit, as so: 
+You will have to install Vue & Vuemit, as so:
 
 ```js
 npm install vue --save
@@ -36,13 +36,13 @@ To install this package you just need to open your console line and type ```npm 
 
 # Gettings started
 
-***First of all***, you have to sign up in ***Google API Console*** in order for you to configure your app information, as API key, app name, etc. This can be addressed on <a href="https://console.developers.google.com">https://console.developers.google.com</a>. Once this has been done, you will have to copy the ***API KEY given by google*** and paste in your JS file entry point. Example: 
+***First of all***, you have to sign up in ***Google API Console*** in order for you to configure your app information, as API key, app name, etc. This can be addressed on <a href="https://console.developers.google.com">https://console.developers.google.com</a>. Once this has been done, you will have to copy the ***API KEY given by google*** and paste in your JS file entry point. Example:
 
 - Bootstrap File: <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/bootstrap.js">bootstrap.js</a>. You will have to ***require Vuemit*** in this file to have the events handler set as globaly. As so: <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/bootstrap.js#L23">Example</a>
 
 - Entry point file: <a href="https://github.com/gocanto/google-autocomplete/blob/master/src/js/demo.js">demo.js</a>
 
-> **Note:** Important keys have to be kept within an .env file, so be aware of this while pushing your code to your git control. 
+> **Note:** Important keys have to be kept within an .env file, so be aware of this while pushing your code to your git control.
 
 
 ***Second of all***, you will have to import the component in your application entry point, so you will be able to call it as global when need it. Example:
@@ -82,11 +82,11 @@ require('./bootstrap');
 new Vue({
 
 	el: '#demo',
-	
+
 
 	data:
 	{
-		output: {}, address: {}, sent: false, response: {}, configs: {}
+		output: {}, address: {}, sent: false, response: {}, config: {}
 	},
 
 
@@ -110,7 +110,7 @@ new Vue({
 			this.output = this.address;
 			this.address = {};
 		},
-		
+
 
 		/**
 		 * Checks whether the output data is valid.
@@ -121,7 +121,7 @@ new Vue({
 		{
 			return Object.keys(this.output).length > 0;
 		},
-		
+
 
 		/**
 		 * Checks whether the output data is not valid.
@@ -179,13 +179,13 @@ See the example <a href="https://github.com/gocanto/google-autocomplete/blob/mas
 <google-autocomplete
 	class = "input"
 	input_id = "txtAutocomplete"
+	:config = "{type: ['geocode']}"
 	placeholder = "type your address"
-	:configs="{type: ['geocode']}"
 >
 </google-autocomplete>
 ```
 
-:configs is the configs passed to the Autocomplete constructor of the places API. See <a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete#add_autocomplete">documentation</a>. Configs corresponds to the `options` argument in the doc.
+***:config*** is the config passed to the Autocomplete constructor of the places API. See <a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete#add_autocomplete">documentation</a>. Config corresponds to the `options` argument in the doc.
 
 See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/demo/index.html#L50-L54" target="_blank">here</a>
 
@@ -204,7 +204,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 
 # How can I thank you?
-Why not star the github repo? I'd love the attention! Why not share the link for this repository on Twitter? Spread the word!
+Why not star the github repo?. Share the link for this repository on Twitter? Spread the word!
 
 
 Don't forget to [follow me on twitter](https://twitter.com/gocanto)!

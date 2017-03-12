@@ -12,17 +12,17 @@
 	export default {
 
 		props: {
-            placeholder: String, //the input placeholder
-            input_id: String, // the input id
-            "class": String, // the input class
-            configs: {
-              type: Object,
-              "default": () => {
-                return {
-                  types: ['geocode']
-                }
-              }
-            } // the Google Autocomplete configs to pass-in
+			placeholder: String, //the input placeholder
+			input_id: String, // the input id
+			"class": String, // the input class
+			config: {
+				type: Object,
+				"default": () => {
+					return {
+						types: ['geocode']
+					}
+				}
+			} // the Google Autocomplete config to pass-in
         },
 
 		data: function ()
@@ -47,7 +47,7 @@
 		computed:
 		{
 			/**
-			 * The place variable on charge to retrieve a required place from the autocomplete object.
+			 * The place variable returns the requested place from the autocomplete object.
 			 *
 			 * @return {Object}
 			 */
@@ -59,32 +59,36 @@
 
 				return {};
 			},
-            response () {
-              if (this.hasAutocompleteInstance() && this.autocomplete.getPlace() !== null) {
-                return this.autocomplete.response;
-              }
 
-              return {};
+			/**
+			 * The response variable returns the whole google autocomplete payload.
+			 *
+			 * @return {Object}
+			 */
+            response()
+            {
+				if (this.hasAutocompleteInstance() && this.autocomplete.getPlace() !== null) {
+					return this.autocomplete.getResponse();
+				}
+
+				return {};
             }
 		},
 
 		mounted()
 		{
-			//Creates a new Autocomplete object and bind it to
-			//the given key.
-			this.autocomplete = Autocomplete.make(this.input_id, this.configs);
+			//Creates a new Autocomplete object and bind it to the given key.
+			this.autocomplete = Autocomplete.make(this.input_id, this.config);
 		},
 
 		watch:
 		{
 			place()
 			{
-				//fires an event to have the retrieved place within
-				//the parent component.
-				// Store.commit('setAddress', this.place);
+				//fires an event to have the retrieved place within the parent component.
 				Vuemit.fire('setAddress', {
-                  place: this.place,
-                  response: this.response
+					response: this.response,
+					place: this.place
                 });
 			}
 		},

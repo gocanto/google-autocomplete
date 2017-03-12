@@ -44,7 +44,7 @@ require('./Components/index');
 
 window.GOOGLE_AUTOCOMPLETE = {
 	'domain': 'https://maps.googleapis.com/maps/api/js',
-	'key': 'AIzaSyBDBrWOEiYNTbOp05CoWBGuq4hIwAA6yEs',
+	'key': 'AIzaSyB669b125rYvqTQFK2jdkCmMAOPdGgUVEQ',
 	'library' : 'places',
 
 	// google inputs retrieved.

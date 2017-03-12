@@ -16,7 +16,7 @@ class Autocomplete
 	 * @param {String} ref
 	 * @return {Void}
 	 */
-	constructor(ref, configs = {})
+	constructor(ref, config = {})
 	{
 		/**
 		 * The retrieved place.
@@ -25,11 +25,11 @@ class Autocomplete
 		 */
 		this.place = {};
 
-    /**
-     * The retrieved response
-     *
-     * @type {{}}
-     */
+		/**
+		* The google autocomplete payload.
+		*
+		* @type {Object}
+		*/
 		this.response = {};
 
 		/**
@@ -46,12 +46,12 @@ class Autocomplete
 		 */
 		this.ref = document.getElementById(ref);
 
-    /**
-     * The autocomplete configs
-     *
-     * @type {{}}
-     */
-    this.configs = configs;
+		/**
+		* The autocomplete config
+		*
+		* @type {Object}
+		*/
+		this.config = config;
 
 		//Boots the autocomplete.
 		this.boot();
@@ -60,10 +60,11 @@ class Autocomplete
 	/**
 	 * Create a new google map instance.
 	 *
+	 * @return Autocomplete
 	 */
-	static make(ref, configs = {})
+	static make(ref, config = {})
 	{
-		return new Autocomplete(ref, configs);
+		return new Autocomplete(ref, config);
 	}
 
 	/**
@@ -83,7 +84,9 @@ class Autocomplete
 	 */
 	bind(obj)
 	{
-		obj.autocomplete = new google.maps.places.Autocomplete(obj.ref, this.configs);
+		obj.autocomplete = new google.maps.places.Autocomplete(
+			obj.ref, this.config
+		);
 
 	    obj.autocomplete.addListener('place_changed', () => { obj.pipe(); });
 	}
@@ -96,8 +99,8 @@ class Autocomplete
 	pipe()
 	{
 		let data  = {};
-		let place = this.autocomplete.getPlace();
 		let googleInputs = window.GOOGLE_AUTOCOMPLETE.inputs;
+		let place = this.response = this.autocomplete.getPlace();
 
 		if (place.address_components !== undefined) {
 
@@ -114,8 +117,6 @@ class Autocomplete
 				JSON.stringify(data)
 			);
 		}
-
-		this.response = place;
 	}
 
 	/**
@@ -152,6 +153,16 @@ class Autocomplete
 	getPlace()
 	{
 		return this.place;
+	}
+
+	/**
+	 * Returns the retrieved response.
+	 *
+	 * @return {Object}
+	 */
+	getResponse()
+	{
+		return this.response;
 	}
 
 	/**
