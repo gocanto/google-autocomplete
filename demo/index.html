@@ -51,6 +51,7 @@
                         class = "input"
                         input_id = "txtAutocomplete"
                         placeholder = "type your address"
+                        :configs="{ type: ['geocode']}"
                     >
                     </google-autocomplete>
                     <span class="help is-danger" v-if="sent && isNotValid()">Select a valid address!</span>
@@ -73,7 +74,10 @@
             Address retrieved from google places
         </div>
         <div class="message-body">
+            <label>Output</label>
             <pre>{{ output }}</pre>
+            <label>Response</label>
+            <pre>{{ response }}</pre>
         </div>
     </article>
 
