@@ -86,7 +86,7 @@ new Vue({
 
 	data:
 	{
-		output: {}, address: {}, sent: false
+		output: {}, address: {}, sent: false, response: {}, configs: {}
 	},
 
 
@@ -140,10 +140,11 @@ new Vue({
 		 * @param {Object}
 		 * @return {Void}
 		 */
-		onAddressChanged(address)
+		onAddressChanged(payload)
 		{
-			if (Object.keys(address).length > 0) {
-				this.address = address;
+			if (Object.keys(paypload.place).length > 0) {
+				this.address = payload.address;
+				this.response = payload.response;
 			}
 		}
 	}
@@ -179,9 +180,12 @@ See the example <a href="https://github.com/gocanto/google-autocomplete/blob/mas
 	class = "input"
 	input_id = "txtAutocomplete"
 	placeholder = "type your address"
+	:configs="{type: ['geocode']}"
 >
 </google-autocomplete>
 ```
+
+:configs is the configs passed to the Autocomplete constructor of the places API. See <a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete#add_autocomplete">documentation</a>. Configs corresponds to the `options` argument in the doc.
 
 See the example <a href="https://github.com/gocanto/google-autocomplete/blob/master/demo/index.html#L50-L54" target="_blank">here</a>
 
