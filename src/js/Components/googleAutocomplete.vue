@@ -90,7 +90,17 @@
 					response: this.response,
 					place: this.place
                 });
-			}
+			},
+
+            address()
+            {
+                if (this.address === '')
+                {
+                    //fires an event to let the parent component know the address field has been cleared
+                    Vuemit.fire('addressWasCleared');
+                }
+
+            }
 		},
 
 		methods:
