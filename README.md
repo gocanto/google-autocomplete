@@ -94,6 +94,7 @@ new Vue({
 	{
 		//Set an event listener for 'setAddress'.
 		Vuemit.listen('setAddress', this.onAddressChanged);
+		Vuemit.listen('addressWasCleared', this.onAddressCleared);
 	},
 
 
@@ -135,7 +136,7 @@ new Vue({
 
 
 		/**
-		 * The callback fired when the autocomplete event was fired.
+		 * The callback fired when the autocomplete address change event was fired.
 		 *
 		 * @param {Object}
 		 * @return {Void}
@@ -147,6 +148,18 @@ new Vue({
 				this.response = payload.response;
 			}
 		}
+		
+		/**
+     * The callback fired when the autocomplete clear event was fired.
+     *
+     * @param {Object}
+     * @return {Void}
+     */
+    onAddressCleared()
+    {
+      this.address = {};
+      this.response = {};
+    }
 	}
 
 });
