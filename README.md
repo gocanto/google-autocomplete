@@ -81,87 +81,86 @@ require('./bootstrap');
 
 new Vue({
 
-	el: '#demo',
+    el: '#demo',
 
 
-	data:
-	{
-		output: {}, address: {}, sent: false, response: {}, config: {}
-	},
-
-
-	mounted()
-	{
-		//Set an event listener for 'setAddress'.
-		Vuemit.listen('setAddress', this.onAddressChanged);
-		Vuemit.listen('addressWasCleared', this.onAddressCleared);
-	},
-
-
-	methods:
-	{
-		/**
-		 * Submit the data to be evaluated.
-		 *
-		 * @return {Void}
-		 */
-		submit()
-		{
-			this.sent = true;
-			this.output = this.address;
-			this.address = {};
-		},
-
-
-		/**
-		 * Checks whether the output data is valid.
-		 *
-		 * @return {Bool}
-		 */
-		isValid()
-		{
-			return Object.keys(this.output).length > 0;
-		},
-
-
-		/**
-		 * Checks whether the output data is not valid.
-		 *
-		 * @return {Bool}
-		 */
-		isNotValid()
-		{
-			return ! this.isValid();
-		},
-
-
-		/**
-		 * The callback fired when the autocomplete address change event was fired.
-		 *
-		 * @param {Object}
-		 * @return {Void}
-		 */
-		onAddressChanged(payload)
-		{
-			if (Object.keys(paypload.place).length > 0) {
-				this.address = payload.address;
-				this.response = payload.response;
-			}
-		}
-		
-		/**
-     * The callback fired when the autocomplete clear event was fired.
-     *
-     * @param {Object}
-     * @return {Void}
-     */
-    onAddressCleared()
+    data:
     {
-      this.address = {};
-      this.response = {};
-    }
-	}
+        output: {}, address: {}, sent: false, response: {}, config: {}
+    },
 
+
+    mounted()
+    {
+        //Set an event listener for 'setAddress'.
+        Vuemit.listen('setAddress', this.onAddressChanged);
+        Vuemit.listen('addressWasCleared', this.onAddressCleared);
+    },
+
+
+    methods:
+    {
+        /**
+         * Submit the data to be evaluated.
+         *
+         * @return {Void}
+         */
+        submit()
+        {
+            this.sent = true;
+            this.output = this.address;
+            this.address = {};
+        },
+
+
+        /**
+         * Checks whether the output data is valid.
+         *
+         * @return {Bool}
+         */
+        isValid()
+        {
+            return Object.keys(this.output).length > 0;
+        },
+
+
+        /**
+         * Checks whether the output data is not valid.
+         *
+         * @return {Bool}
+         */
+        isNotValid()
+        {
+            return ! this.isValid();
+        },
+
+
+        /**
+         * The callback fired when the autocomplete address change event was fired.
+         *
+         * @param {Object}
+         * @return {Void}
+         */
+        onAddressChanged(payload)
+        {
+            if (Object.keys(paypload.place).length > 0) {
+                this.address = payload.address;
+                this.response = payload.response;
+            }
+        }
+
+        /**
+         * The callback fired when the autocomplete clear event was fired.
+         *
+         * @param {Object}
+         * @return {Void}
+         */
+        onAddressCleared()
+        {
+            this.address = {};
+            this.response = {};
+        }
+    }
 });
 ```
 
@@ -190,10 +189,10 @@ See the example <a href="https://github.com/gocanto/google-autocomplete/blob/mas
 
 ```HTML
 <google-autocomplete
-	class = "input"
-	input_id = "txtAutocomplete"
-	:config = "{type: ['geocode']}"
-	placeholder = "type your address"
+    class = "input"
+    input_id = "txtAutocomplete"
+    :config = "{type: ['geocode']}"
+    placeholder = "type your address"
 >
 </google-autocomplete>
 ```
