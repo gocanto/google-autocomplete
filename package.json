@@ -4,7 +4,7 @@
   "author": "Gustavo Ocanto",
   "name": "google-autocomplete-vue",
   "main": "dist/Components/index.js",
-  "description": "Google autocomplete vuejs componet",
+  "description": "Google autocomplete vuejs component",
   "homepage": "https://github.com/gocanto/google-autocomplete",
   "scripts": {
     "prepublish": "gulp"
@@ -16,7 +16,7 @@
   "keywords": [
     "vue",
     "google",
-    "componet",
+    "component",
     "autocomplete"
   ],
   "devDependencies": {
